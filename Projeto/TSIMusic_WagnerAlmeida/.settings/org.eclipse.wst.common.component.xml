@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="TSIMusic_WagnerAlmeida">
+        <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
+        <property name="java-output-path" value="/TSIMusic_WagnerAlmeida/build/classes"/>
+        <property name="ClientProject" value="TSIMusic_WagnerAlmeidaClient"/>
+        <property name="ClientJARURI" value="TSIMusic_WagnerAlmeidaClient.jar"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 		xmlns:h="http://java.sun.com/jsf/html"
+ 		xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Músicas</title>
+	</h:head>
+	<h:body>
+		<h2>TSI Music</h2>
+	
+		<h:form>
+			<h:commandLink action="usuario" value="Novo Usuário" /> | 
+			<h:commandLink action="musicas" value="Músicas" /> |
+			<h:commandLink action="login" value="Login" />
+		</h:form>
+		
+		<h:form id="nova_musica">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nome: " />
+				<h:inputText value="#{musicaMB.musica.nome}" />
+				
+				<h:outputLabel value="Artista: " />
+				<h:inputText value="#{musicaMB.musica.artista}" />
+				
+				<h:outputLabel value="Localização: " />
+				<h:inputText value="#{musicaMB.musica.localizacao}" />
+				
+				<h:commandButton action="#{musicaMB.salva()}" value="Gravar" />
+				<h:commandButton action="#{musicaMB.cancela()}" value="Cancelar" />
+			</h:panelGrid>
+		</h:form>
+		
+		<hr/>
+		
+		<h:form id="lista_musicas">
+			<h:dataTable value="#{musicaMB.biblioteca}" var="musica" border="1">
+				<h:column>
+					<f:facet name="header">Música</f:facet>
+					<h:outputText value="#{musica.nome}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Artista</f:facet>
+					<h:outputText value="#{musica.artista}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Localização</f:facet>
+					<h:outputText value="#{musica.localizacao}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandLink value="Alterar">
+						<f:setPropertyActionListener value="#{musica}" target="#{musicaMB.musica}" />
+						<f:ajax execute="@form" render=":nova_musica"/>
+					</h:commandLink>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink action="#{musicaMB.remove(musica)}" value="Remover" >
+						<f:ajax execute="@form" render=":lista_musicas"/>
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</h:body>
+</html>
